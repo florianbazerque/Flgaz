@@ -24,7 +24,7 @@ def timeline():
 
 def parse_from_csv():
 	gaz = []
-	with open('./gazouilles.csv', 'r') as f:
+	with open('gazouilles.csv', 'r') as f:
 		reader = csv.reader(f)
 		for row in reader:
 			gaz.append({"user":row[0], "text":row[1]})
@@ -32,6 +32,6 @@ def parse_from_csv():
 
 def dump_to_csv(d):
 	donnees = [d["user-name"],d["user-text"] ]
-	with open('./gazouilles.csv', 'a', newline='', encoding='utf-8') as f:
+	with open('gazouilles.csv', 'a', newline='', encoding='utf-8') as f:
 		writer = csv.writer(f)
 		writer.writerow(donnees)
