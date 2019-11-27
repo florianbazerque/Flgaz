@@ -3,7 +3,7 @@
 ## Que propose le site PythonAnywhere ?
 
 Le site PythonAnywhere propose plusieurs fonctionnalités :
-* Héberger un serveur Python en ligne
+* Héberge un serveur Python en ligne
 * Propose des frameworks (Flask, ...)
 * Editeur de code
 * Emulateur de console (Bash, Python)
@@ -19,11 +19,11 @@ Plusieurs sites connus utilisent Flask :
 * MIT
 * Zalando
 
-# Déscription des actions réalisées
+# Description des actions réalisées
 
 ## Quelles étapes avez-vous suivi ?
 
-* Téléchargement de l'archive FLGAZ, puis extraction dans un fichier
+* Téléchargement de l'archive FLGAZ, puis extraction dans un dossier
 * Ajout du dossier sur un repo Git
 * Ouverture du compte PythonAnywhere et création d'une application tournant avec Flask et une console Bash
 * Git Clone du repo du FLGAZ depuis PythonAnywhere pour pouvoir mettre l'application en ligne
