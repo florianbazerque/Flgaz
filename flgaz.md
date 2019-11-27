@@ -39,5 +39,6 @@ Faire en sorte que Flgaz soit la page d'ouverture de l'application sur le site P
 * Il n'est pas possible d'avoir de conversation sur un thème précis : tous les commentaires sont mélangés
 * Il n'est pas possible de faire des messages privés
 * Il n'est pas possible de filtrer les mots utilisés
+* Encodage UTF-8
 
 ## Quelles sont, selon vous, les menaces auxquelles un tel projet peut être soumis ?
