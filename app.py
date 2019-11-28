@@ -23,6 +23,12 @@ def timeline():
 	gaz = parse_from_csv()
 	return render_template("timeline.html", gaz = gaz)
 
+@app.after_request
+def add_header(response):
+    response.cache_control.max_age = 300
+    response.access_control_allow_origin = '*'
+    return response
+
 def parse_from_csv():
 	gaz = []
 	with open('./gazouilles.csv', 'r') as f:
