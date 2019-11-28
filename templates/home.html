@@ -1,15 +1,6 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title></title>
-	<style>
-		form{
-			display: flex;
-			flex-direction: column;
-		}
-	</style>
-</head>
-<body>
-	Test d'une nouvelle vue
-</body>
-</html>
+{% extends "template.html" %}
+{% block content %}
+    <p>Welcome on my awesome homepage.</p>
+    {% include 'timeline.html' %}
+    {% include 'formulaire.html' %}
+{% endblock %}

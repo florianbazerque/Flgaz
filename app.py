@@ -5,7 +5,8 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
-    return render_template("home.html")
+    gaz = parse_from_csv()
+    return render_template("home.html", gaz = gaz)
 
 @app.route('/gaz', methods=['GET','POST'])
 def save_gazouille():

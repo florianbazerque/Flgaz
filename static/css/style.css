@@ -1,0 +1,9 @@
+form{
+	display: flex;
+	flex-direction: column;
+}
+
+.gaz{
+	margin: 10px auto;
+	border:1px solid black;
+}
