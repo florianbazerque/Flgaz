@@ -1,10 +1,26 @@
 from flask import Flask, request, render_template, redirect, url_for
-import csv
+#from flask_mysqldb import MySQL
+import csv, yaml
+
 
 app = Flask(__name__)
 
+#Configuration base de données
+#db = yaml.load(open('settings.yaml'))
+#app.config['MYSQL_HOST'] = db['MYSQL_HOST']
+#app.config['MYSQL_USER'] = db['MYSQL_USER']
+#app.config['MYSQL_PASSWORD'] = db['MYSQL_PASSWORD']
+#app.config['MYSQL_DB'] = db['MYSQL_DB']
+
+#mysql = MySQL(app)
+
 @app.route('/')
 def home():
+    try:
+	    cur = mysql.connection.cursor()
+    except:
+	    print('oups')
+    
     gaz = parse_from_csv()
     return render_template("home.html", gaz = gaz)
 
@@ -21,6 +37,8 @@ def save_gazouille():
 @app.route('/timeline', methods=['GET'])
 def timeline():
 	gaz = parse_from_csv()
+	for g in gaz:
+		g = g[:75]
 	return render_template("timeline.html", gaz = gaz)
 
 @app.after_request
