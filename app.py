@@ -23,6 +23,22 @@ def timeline():
 	gaz = parse_from_csv()
 	return render_template("timeline.html", gaz = gaz)
 
+@app.route('/timeline/<variable>/', methods=['GET'])
+def timelineUser(variable):
+    user = str(variable)
+    gaz = parse_from_csv()
+    userGaz = []
+    nbGaz = 0
+    for g in gaz:
+        if user == g['user']:
+    	    userGaz.append(g)
+    	    nbGaz += 1
+    if nbGaz > 0:
+        return render_template("timeline.html", gaz = userGaz)
+    else:
+        return redirect(url_for('home'))
+
+
 @app.after_request
 def add_header(response):
     response.cache_control.max_age = 300
