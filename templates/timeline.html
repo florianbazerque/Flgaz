@@ -1,8 +1,9 @@
 {% block timeline %}
+<div class="subtitle">Timeline</div>
 	{% for g in gaz %}
 	<div id="gazouille-{{loop.index}}" class="gaz">
-		<div>{{g.user}}</div>
-		<div>{{g.text}}</div>
+		<div class="user">{{g.user}}</div>
+		<div class="message">{{g.text}}</div>
 	</div>
 	{% endfor %}
 {% endblock %}

@@ -8,7 +8,7 @@ def home():
     gaz = parse_from_csv()
     return render_template("home.html", gaz = gaz)
 
-@app.route('/gaz', methods=['GET','POST'])
+@app.route('/', methods=['GET','POST'])
 def save_gazouille():
 	if request.method == 'POST':
 		print(request.form)

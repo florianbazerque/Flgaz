@@ -1,9 +1,79 @@
-form{
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap');
+
+* { 
+	font-family: 'Open Sans';
+}
+
+form {
 	display: flex;
 	flex-direction: column;
 }
 
-.gaz{
-	margin: 10px auto;
-	border:1px solid black;
+body {
+	margin: 0;
 }
+
+.navbar {
+	background-color: #111;
+	height: 50px;
+	width: 100%;
+}
+.container {
+	flex: auto;
+	width: 50%;
+	margin: auto;
+
+}
+
+.user{
+	padding: 5px 10px 3px 10px;
+    margin: 0;
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.message{
+	padding: 0px 0px 12px 12px;
+    font-size: 13px;
+}
+
+.gaz {
+	margin: 10px auto;
+	border-radius: 15px;
+    border: 1px solid #f9f3f3;
+	-webkit-box-shadow: 7px 6px 45px -26px rgba(0,0,0,0.75);
+	-moz-box-shadow: 7px 6px 45px -26px rgba(0,0,0,0.75);
+	box-shadow: 0px 3px 30px -26px rgba(0,0,0,0.75);
+}
+
+.btn {
+	background-color: #111;
+	color: #fff;
+	padding: 10px;
+	width: 100px;
+    margin: auto;
+    border-radius: 20px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+#formulaire{
+	margin-top: 10px;
+}
+
+form label {
+	font-size: 13px;
+    font-weight: bold;
+    padding: 5px 0px;
+}
+
+#formulaire textarea{
+	border-color: #ccc;
+}
+
+.subtitle{
+	font-size: 25px;
+    font-weight: bold;
+    padding: 10px 0px;
+}
+
