@@ -87,7 +87,7 @@ def add_header(response):
     response_header cache_control and access_control_allow_origin
     """
     response.cache_control.max_age = 300
-    response.access_control_allow_origin = '*'
+    response.headers['Access-Control-Allow-Origin'] = 'http://florianb.pythonanywhere.com/'
     return response
 
 def parse_from_csv():
