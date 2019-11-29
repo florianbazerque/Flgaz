@@ -8,7 +8,7 @@
 </div>
 	{% for g in gaz %}
 	<div id="gazouille-{{loop.index}}" class="gaz">
-		<div class="user"><a href="./timeline/{{g.user}}">{{g.user}}</a></div>
+		<div class="user"><a href="/timeline/{{g.user}}">{{g.user}}</a></div>
 		<div class="message">{{g.text}}</div>
 	</div>
 	{% endfor %}
