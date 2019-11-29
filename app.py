@@ -105,7 +105,8 @@ def parse_from_csv():
         reader = csv.reader(file)
         for row in reader:
             if len(row[0]) < 20 and len(row[1]) < 280 and len(row[0]) > 0 and len(row[1]) > 0:
-                gaz.append({"user":row[0], "text":row[1]})
+                if not "barre" in row[1]:
+                    gaz.append({"user":row[0], "text":row[1]})
     return gaz
 
 def dump_to_csv(data):
