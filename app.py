@@ -20,7 +20,7 @@ def home():
     gaz = parse_from_csv()
     return render_template("home.html", gaz=gaz)
 
-@APP.route('/', methods=['GET','POST'])
+@APP.route('/gaz', methods=['GET', 'POST'])
 def save_gazouille():
     """
     save_gazouille : return gazouille view
@@ -36,7 +36,7 @@ def save_gazouille():
         dump_to_csv(request.form)
         return redirect(url_for('home'))
     if request.method == 'GET':
-        return render_template('formulaire.html')
+        return render_template('gaz_t.html')
     return redirect(url_for('home'))
 
 @APP.route('/timeline', methods=['GET'])
@@ -51,7 +51,7 @@ def timeline():
     html page
     """
     gaz = parse_from_csv()
-    return render_template("timeline.html", gaz=gaz)
+    return render_template("timeline_t.html", gaz=gaz)
 
 @APP.route('/timeline/<user_name>/', methods=['GET'])
 def timeline_user(user_name):
@@ -72,7 +72,7 @@ def timeline_user(user_name):
         if user == gaz['user']:
             user_gaz.append(gaz)
             nb_gaz += 1
-    return render_template("timeline.html", gaz=user_gaz) if nb_gaz else redirect(url_for('home'))
+    return render_template("timeline_t.html", gaz=user_gaz) if nb_gaz else redirect(url_for('home'))
 
 
 @APP.after_request

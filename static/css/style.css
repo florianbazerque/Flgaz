@@ -13,11 +13,6 @@ body {
 	margin: 0;
 }
 
-.navbar {
-	background-color: #111;
-	height: 50px;
-	width: 100%;
-}
 .container {
 	flex: auto;
 	width: 50%;
@@ -30,6 +25,17 @@ body {
     margin: 0;
     font-weight: 700;
     font-size: 14px;
+}
+.user a{
+	color: #111;
+	text-decoration: none;
+}
+
+.navbar a{
+	color: #111;
+	text-decoration: none;
+	font-weight: bold;
+	font-size: 14px;
 }
 
 .message{

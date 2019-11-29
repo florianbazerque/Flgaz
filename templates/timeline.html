@@ -1,8 +1,14 @@
 {% block timeline %}
-<div class="subtitle">Timeline</div>
+<div class="subtitle">
+	{% if request.path == "/timeline" or request.path == "/" %}
+		Timeline
+	{% else %}
+		Timeline of {{gaz[0].user}}
+	{% endif %}
+</div>
 	{% for g in gaz %}
 	<div id="gazouille-{{loop.index}}" class="gaz">
-		<div class="user">{{g.user}}</div>
+		<div class="user"><a href="./timeline/{{g.user}}">{{g.user}}</a></div>
 		<div class="message">{{g.text}}</div>
 	</div>
 	{% endfor %}
