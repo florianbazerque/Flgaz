@@ -1,62 +1,125 @@
-from flask import Flask, request, render_template, redirect, url_for
+"""
+Principal module of the application, redirect to all road of the app
+"""
 import csv
+from flask import Flask, request, render_template, redirect, url_for
 
-app = Flask(__name__)
+APP = Flask(__name__)
 
-@app.route('/')
+@APP.route('/')
 def home():
+    """
+    home : return home view
+    Parameters
+    ----------
+    none
+    Return
+    -------
+    html page
+    """
     gaz = parse_from_csv()
-    return render_template("home.html", gaz = gaz)
+    return render_template("home.html", gaz=gaz)
 
-@app.route('/gaz', methods=['GET','POST'])
+@APP.route('/gaz', methods=['GET', 'POST'])
 def save_gazouille():
-	if request.method == 'POST':
-		print(request.form)
-		dump_to_csv(request.form)
-		return redirect(url_for('home'))
-		#return "OK"
-	if request.method == 'GET':
-		return render_template('formulaire.html')
-
-@app.route('/timeline', methods=['GET'])
-def timeline():
-	gaz = parse_from_csv()
-	return render_template("timeline.html", gaz = gaz)
-
-@app.route('/timeline/<variable>/', methods=['GET'])
-def timelineUser(variable):
-    user = str(variable)
-    gaz = parse_from_csv()
-    userGaz = []
-    nbGaz = 0
-    for g in gaz:
-        if user == g['user']:
-    	    userGaz.append(g)
-    	    nbGaz += 1
-    if nbGaz > 0:
-        return render_template("timeline.html", gaz = userGaz)
-    else:
+    """
+    save_gazouille : return gazouille view
+    Parameters
+    ----------
+    none
+    Return
+    -------
+    html page
+    """
+    if request.method == 'POST':
+        print(request.form)
+        dump_to_csv(request.form)
         return redirect(url_for('home'))
+    if request.method == 'GET':
+        return render_template('formulaire.html')
+    return redirect(url_for('home'))
+
+@APP.route('/timeline', methods=['GET'])
+def timeline():
+    """
+    timeline : return timeline view
+    Parameters
+    ----------
+    none
+    Return
+    -------
+    html page
+    """
+    gaz = parse_from_csv()
+    return render_template("timeline.html", gaz=gaz)
+
+@APP.route('/timeline/<user_name>/', methods=['GET'])
+def timeline_user(user_name):
+    """
+    timeline_user : return timeline for user
+    Parameters
+    ----------
+    string user_name
+    Return
+    -------
+    html page
+    """
+    user = str(user_name)
+    gaz_list = parse_from_csv()
+    user_gaz = []
+    nb_gaz = 0
+    for gaz in gaz_list:
+        if user == gaz['user']:
+            user_gaz.append(gaz)
+            nb_gaz += 1
+    return render_template("timeline.html", gaz=user_gaz) if nb_gaz else redirect(url_for('home'))
 
 
-@app.after_request
+@APP.after_request
 def add_header(response):
+    """
+    add_header : return response
+    Parameters
+    ----------
+    reponse
+    Return
+    -------
+    response_header cache_control and access_control_allow_origin
+    """
     response.cache_control.max_age = 300
     response.access_control_allow_origin = '*'
     return response
 
 def parse_from_csv():
-	gaz = []
-	with open('./gazouilles.csv', 'r') as f:
-		reader = csv.reader(f)
-		for row in reader:
-			if len(row[1]) < 280:
-				gaz.append({"user":row[0], "text":row[1]})
-	return gaz
+    """
+    parse_from_csv : return list of all gaz
+    Parameters
+    ----------
+    none
+    Return
+    -------
+    return list
+    """
+    gaz = []
+    with open('./gazouilles.csv', 'r') as file:
+        reader = csv.reader(file)
+        for row in reader:
+            if len(row[1]) < 280:
+                gaz.append({"user":row[0], "text":row[1]})
+    return gaz
 
-def dump_to_csv(d):
-	if len(d["user-text"]) < 280:
-		donnees = [d["user-name"],d["user-text"] ]
-		with open('./gazouilles.csv', 'a', newline='', encoding='utf-8') as f:
-			writer = csv.writer(f)
-			writer.writerow(donnees)
+def dump_to_csv(data):
+    """
+    dump_to_csv : take data from save_gazouille and put it in csv
+    Parameters
+    ----------
+    dict d
+    Return
+    -------
+    none
+    """
+    if len(data["user-text"]) < 280:
+        donnees = [data["user-name"], data["user-text"]]
+        with open('./gazouilles.csv', 'a', newline='', encoding='utf-8') as file:
+            writer = csv.writer(file)
+            writer.writerow(donnees)
